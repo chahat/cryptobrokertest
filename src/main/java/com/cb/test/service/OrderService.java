@@ -33,9 +33,9 @@ public class OrderService implements AppService<Order>{
     private static String USER_UPDATE;
     private static String ORDER_UPDATE;
     private static Boolean orderNgBalanceCheck;
-    @Value("${com.cb.test.neg-check}'")
+    @Value("${com.cb.test.neg-check}")
     private void setOrderNgBalanceCheck(String negcheck) {
-    	orderNgBalanceCheck = new Boolean(negcheck);
+    	orderNgBalanceCheck = Boolean.valueOf(negcheck);
     	String innerQuery = "SELECT   u.id as u_id, ids, cum_sum, amt_sum"
         		+ " FROM  ("
         		+ "			SELECT iduser, group_concat('ID'||id||'ID') OVER w as ids, SUM(amount) OVER w AS amt_sum, SUM(olimit*amount) OVER w AS cum_sum"
